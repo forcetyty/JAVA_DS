@@ -1,53 +1,48 @@
 package stack;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import jdk.jshell.spi.ExecutionControl;
+
+import java.util.*;
 
 public class Queue02 {
     public static void main(String[] args) {
-        // Queue 자료구조 실습
-        // 1. LinkedList
-        Queue<Integer> queue = new LinkedList<>();
+        // Queue - LinkedList로 구현하는 대기번호
+        Queue<String> queue = new LinkedList<>();
+        Timer time = new Timer();
 
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
+        queue.add("김철수");
+        queue.add("홍길동");
+        queue.add("양동근");
+        queue.add("김길수");
 
-        System.out.println(" 큐 상태 : " + queue);
-        System.out.println(" 큐의 첫번째 요소를 반환하되 제거하지 않음 : " + queue.peek());
-        System.out.println(" 큐의 첫번째 요소를 제거하고 반환 : " + queue.poll());
-        System.out.println(" 큐 상태 : " + queue);
 
-        // 2. PriorityQueue
-        // 우선순위 큐로 들어온 순서와 상관없이 우선순위가 높은 요소가 먼저 나가는 구조
-        Queue<Integer> queue2 = new PriorityQueue<>();
+        System.out.println("-------------------------------------------");
+        System.out.println(">>>>> " + queue.toString() + " 대기중입니다.");
 
-        queue2.add(3);
-        queue2.add(2);
-        queue2.add(1);
+        int qSize = queue.size();
+        for(int i = 0; i < qSize; i++ ){
+            System.out.println("-------------------------------------------");
+            try{
+                Thread.sleep(2000);
+                System.out.println(">>>>> " + queue.poll() + " 입장했습니다");
+                System.out.println(">>>>> " + queue.size() + " 명 대기중입니다.");
 
-        System.out.println(" 큐 상태 2 : " + queue2);
-        System.out.println(" 큐의 첫번째 요소를 반환하되 제거하지 않음 2 : " + queue2.peek());
-        System.out.println(" 큐의 첫번째 요소를 제거하고 반환 2 : " + queue2.poll());
-        System.out.println(" 큐 상태 2 : " + queue2);
+                if(queue.size() == 0){
+                    System.out.println("-------------------------------------------");
+                    System.out.println(" 모두 입장 완료하였습니다. ");
+                    System.out.println("-------------------------------------------");
+                    System.out.println(" >> 시스템을 종료합니다. ");
+                    System.out.println("-------------------------------------------");
+                    System.exit(0); // 프로그램 종료
+                }
 
-        // 3. ArrayDeque
-        // 큐 뿐만 아니라 스택처럼도 사용 할 수 있는 Deque(Double Ended Queue)
-        // 양반향에서 요소를 추가하거나 제거할 수 있어 유용함
-        Queue<Integer> queue3 = new ArrayDeque<>();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
 
-        queue3.add(1);
-        queue3.add(2);
-        queue3.add(3);
-
-        System.out.println(" 큐 상태 3 : " + queue3);
-        System.out.println(" 큐의 첫번째 요소를 반환하되 제거하지 않음 3 : " + queue3.peek());
-        System.out.println(" 큐의 첫번째 요소를 제거하고 반환 3 : " + queue3.poll());
-        System.out.println(" 큐 상태 3 : " + queue3);
-
+        }
 
 
     }
+
 }
