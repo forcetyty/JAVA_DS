@@ -16,10 +16,21 @@ public class List04_Vector {
         //        }
         vector.add("1");
         vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+        vector.add("6");
+        vector.add("7");
+        vector.add("8");
+        vector.add("9");
+        vector.add("10");
+        vector.add("11");
 
-        System.out.println(
-                vector.toString()
-        );
-
+        System.out.println(vector.toString());
+        // Vector 초기 사이즈는 10
+        // 동적으로 사이즈를 늘림
+        System.out.println(" 크기확인 >>>> " + vector.capacity());
     }
+
+
 }
